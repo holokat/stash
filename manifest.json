@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "Stash",
+  "description": "Local-first bookmark mind for clean saving, tagging, and searching.",
+  "version": "0.1.0",
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "contextMenus",
+    "scripting"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "action": {
+    "default_title": "Save to Stash",
+    "default_popup": "src/popup/popup.html"
+  },
+  "background": {
+    "service_worker": "src/background/service-worker.js",
+    "type": "module"
+  },
+  "commands": {
+    "open-stash": {
+      "description": "Open the Stash library",
+      "suggested_key": {
+        "default": "Ctrl+Shift+K",
+        "mac": "Command+Shift+K"
+      }
+    },
+    "quick-save-current-tab": {
+      "description": "Quick save the active tab to Stash",
+      "suggested_key": {
+        "default": "Ctrl+Shift+S",
+        "mac": "Command+Shift+S"
+      }
+    }
+  },
+  "options_page": "src/manager/manager.html"
+}

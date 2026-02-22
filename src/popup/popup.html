@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stash</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="popup" aria-live="polite">
+      <section class="hero">
+        <div class="hero-icon" aria-hidden="true">◔</div>
+        <div>
+          <p class="eyebrow">Stash</p>
+          <h1 id="statusTitle">Saved to your stash</h1>
+          <p id="pageMeta" class="meta">Loading current page…</p>
+        </div>
+      </section>
+
+      <section class="field-wrap">
+        <label class="field-label" for="tagInput">Tags</label>
+        <div class="tags-input" id="tagsInputWrap">
+          <div id="tagChips" class="tag-chips"></div>
+          <input id="tagInput" type="text" placeholder="Add tags" autocomplete="off" />
+        </div>
+        <div id="tagSuggestions" class="tag-suggestions"></div>
+      </section>
+
+      <section class="field-wrap">
+        <label class="field-label" for="noteInput">Note</label>
+        <textarea id="noteInput" rows="4" placeholder="Add a quick thought, context, or why this matters."></textarea>
+      </section>
+
+      <footer class="actions">
+        <button id="copyBtn" class="ghost-btn" type="button">Copy URL</button>
+        <button id="openLibraryBtn" class="ghost-btn" type="button">Open Library</button>
+        <button id="doneBtn" class="primary-btn" type="button">Done</button>
+      </footer>
+    </main>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

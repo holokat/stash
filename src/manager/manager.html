@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stash Library</title>
+    <link rel="stylesheet" href="manager.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-row">
+        <div class="brand-wrap">
+          <h1>Stash</h1>
+        </div>
+
+        <div class="search-wrap">
+          <input
+            id="searchInput"
+            type="search"
+            autocomplete="off"
+            placeholder="Search title, URL, tags, or notes…"
+            aria-label="Search bookmarks"
+          />
+          <kbd>/</kbd>
+        </div>
+
+        <div class="top-actions">
+          <div class="theme-switch" role="group" aria-label="Theme mode">
+            <button type="button" class="theme-btn" data-theme-mode="auto" aria-label="Use auto theme" title="Auto theme"></button>
+            <button type="button" class="theme-btn" data-theme-mode="light" aria-label="Use light theme" title="Light theme"></button>
+            <button type="button" class="theme-btn" data-theme-mode="dark" aria-label="Use dark theme" title="Dark theme"></button>
+          </div>
+
+          <button id="settingsBtn" class="mini-icon-btn" type="button" aria-label="Open settings" title="Settings"></button>
+          <button id="bulkToggleBtn" class="mini-icon-btn" type="button" aria-label="Toggle bulk mode" title="Bulk mode"></button>
+          <button id="exportAllBtn" class="mini-icon-btn" type="button" aria-label="Export bookmarks" title="Export all"></button>
+          <button id="importBtn" class="mini-icon-btn" type="button" aria-label="Import bookmarks" title="Import"></button>
+          <input id="importFileInput" type="file" accept="application/json" hidden />
+        </div>
+      </div>
+
+      <div class="filter-row">
+        <div class="tag-scroll">
+          <div id="tagList" class="tag-list"></div>
+        </div>
+
+        <div class="filter-controls">
+          <label class="sort-control">
+            <span>Sort</span>
+            <select id="sortSelect" aria-label="Sort bookmarks">
+              <option value="recent">Most recent</option>
+              <option value="oldest">Oldest first</option>
+              <option value="title_asc">Title A-Z</option>
+              <option value="title_desc">Title Z-A</option>
+              <option value="domain">Domain</option>
+            </select>
+          </label>
+
+          <div class="layout-switch" role="group" aria-label="Layout mode">
+            <button type="button" data-layout="masonry" class="layout-btn" aria-label="Masonry view" title="Masonry"></button>
+            <button type="button" data-layout="grid" class="layout-btn" aria-label="Grid view" title="Grid"></button>
+            <button type="button" data-layout="list" class="layout-btn" aria-label="List view" title="List"></button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-panel">
+      <div id="bulkBar" class="bulk-bar" hidden>
+        <span id="bulkCount">0 selected</span>
+        <div class="bulk-actions">
+          <button id="selectVisibleBtn" class="tiny-btn" type="button">Select visible</button>
+          <button id="clearSelectionBtn" class="tiny-btn" type="button">Clear</button>
+          <button id="bulkAddTagBtn" class="tiny-btn" type="button">Add tag</button>
+          <button id="bulkCopyUrlsBtn" class="tiny-btn" type="button">Copy URLs</button>
+          <button id="bulkExportBtn" class="tiny-btn" type="button">Export selected</button>
+          <button id="bulkDeleteBtn" class="tiny-btn danger" type="button">Delete selected</button>
+        </div>
+      </div>
+
+      <div id="bookmarkContainer" class="bookmarks" aria-live="polite"></div>
+
+      <div id="emptyState" class="empty-state" hidden>
+        <h3>No bookmarks found</h3>
+        <p>Try a different search or clear filters.</p>
+      </div>
+    </main>
+
+    <dialog id="editDialog" class="edit-dialog">
+      <form id="editForm" method="dialog">
+        <h3>Edit bookmark</h3>
+
+        <label>
+          Title
+          <input id="editTitleInput" name="title" type="text" required />
+        </label>
+
+        <label>
+          URL
+          <input id="editUrlInput" name="url" type="url" disabled />
+        </label>
+
+        <label>
+          Description
+          <textarea id="editDescriptionInput" name="description" rows="2"></textarea>
+        </label>
+
+        <label>
+          Note
+          <textarea id="editNoteInput" name="note" rows="4"></textarea>
+        </label>
+
+        <label>
+          Tags (comma-separated)
+          <input id="editTagsInput" name="tags" type="text" />
+        </label>
+
+        <footer>
+          <button type="button" class="soft-btn" id="cancelEditBtn">Cancel</button>
+          <button type="submit" class="solid-btn">Save</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog id="settingsDialog" class="settings-dialog">
+      <form id="settingsForm" method="dialog">
+        <h3>Settings</h3>
+
+        <label class="setting-row">
+          <div class="setting-label">
+            <span>Masonry columns</span>
+            <small>Desktop default: 4</small>
+          </div>
+          <input id="masonryColumnsInput" name="masonryColumns" type="range" min="2" max="8" step="1" />
+          <output id="masonryColumnsValue" for="masonryColumnsInput">4</output>
+        </label>
+
+        <footer>
+          <button type="button" class="soft-btn" id="cancelSettingsBtn">Cancel</button>
+          <button type="submit" class="solid-btn">Save</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <script type="module" src="manager.js"></script>
+  </body>
+</html>
