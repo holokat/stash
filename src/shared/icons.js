@@ -66,15 +66,12 @@ const ICONS = {
     '<path d="M5 3h14"></path>',
   ],
   settings: [
-    '<circle cx="12" cy="12" r="3"></circle>',
-    '<path d="M12 2v2.5"></path>',
-    '<path d="M12 19.5V22"></path>',
-    '<path d="m4.93 4.93 1.77 1.77"></path>',
-    '<path d="m17.3 17.3 1.77 1.77"></path>',
-    '<path d="M2 12h2.5"></path>',
-    '<path d="M19.5 12H22"></path>',
-    '<path d="m6.7 17.3-1.77 1.77"></path>',
-    '<path d="m19.07 4.93-1.77 1.77"></path>',
+    '<path d="M4 6h10"></path>',
+    '<path d="M4 12h16"></path>',
+    '<path d="M4 18h12"></path>',
+    '<circle cx="17" cy="6" r="2"></circle>',
+    '<circle cx="7" cy="12" r="2"></circle>',
+    '<circle cx="19" cy="18" r="2"></circle>',
   ],
 };
 

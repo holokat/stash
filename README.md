@@ -10,6 +10,7 @@ Stash is a local-only bookmark extension inspired by MyMind patterns.
 - Favicon capture from page metadata (with `/favicon.ico` fallback).
 - IndexedDB persistence (no login, no cloud dependency).
 - Theme mode: `Auto` (time-based), `Light`, `Dark`.
+- Appearance settings: UI font options and dark palette selection.
 - Extension action context menu item: `Open Stash`.
 - Settings modal with configurable masonry columns.
 - Search bookmarks by title, URL, tag, description, and note.

@@ -13,3 +13,11 @@ export function applyTheme(themeMode) {
   const effectiveTheme = resolveTheme(themeMode);
   document.documentElement.setAttribute('data-theme', effectiveTheme);
 }
+
+export function applyThemeWithPalette(themeMode, palettes = {}) {
+  const effectiveTheme = resolveTheme(themeMode);
+  document.documentElement.setAttribute('data-theme', effectiveTheme);
+  document.documentElement.setAttribute('data-light-palette', palettes.lightPalette || 'default');
+  document.documentElement.setAttribute('data-dark-palette', palettes.darkPalette || 'default');
+  document.documentElement.setAttribute('data-ui-font', palettes.uiFont || 'default');
+}

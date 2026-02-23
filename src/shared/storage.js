@@ -2,6 +2,9 @@ export const DEFAULT_SETTINGS = {
   layout: 'masonry',
   sort: 'recent',
   themeMode: 'auto',
+  lightPalette: 'default',
+  darkPalette: 'default',
+  uiFont: 'default',
   masonryColumns: 4,
   compactCards: false,
 };

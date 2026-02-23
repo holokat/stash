@@ -10,7 +10,10 @@
     <header class="topbar">
       <div class="topbar-row">
         <div class="brand-wrap">
-          <h1>Stash</h1>
+          <h1>
+            <img class="brand-icon" src="../../assets/icons/icon512.png" alt="" />
+            <span>Stash</span>
+          </h1>
         </div>
 
         <div class="search-wrap">
@@ -126,14 +129,56 @@
       <form id="settingsForm" method="dialog">
         <h3>Settings</h3>
 
-        <label class="setting-row">
-          <div class="setting-label">
-            <span>Masonry columns</span>
-            <small>Desktop default: 4</small>
-          </div>
-          <input id="masonryColumnsInput" name="masonryColumns" type="range" min="2" max="8" step="1" />
-          <output id="masonryColumnsValue" for="masonryColumnsInput">4</output>
-        </label>
+        <section class="setting-section">
+          <h4>Appearance</h4>
+
+          <label class="setting-row">
+            <div class="setting-label">
+              <span>UI font</span>
+              <small>Applies to the full interface.</small>
+            </div>
+            <select id="uiFontSelect" name="uiFont">
+              <option value="default">Default</option>
+              <option value="geist">Geist</option>
+              <option value="inter">Inter</option>
+              <option value="lato">Lato</option>
+            </select>
+          </label>
+
+          <label class="setting-row">
+            <div class="setting-label">
+              <span>Light palette</span>
+              <small>Current light palette options.</small>
+            </div>
+            <select id="lightPaletteSelect" name="lightPalette">
+              <option value="default">Default</option>
+            </select>
+          </label>
+
+          <label class="setting-row">
+            <div class="setting-label">
+              <span>Dark palette</span>
+              <small>Choose a dark theme palette.</small>
+            </div>
+            <select id="darkPaletteSelect" name="darkPalette">
+              <option value="default">Default</option>
+              <option value="neutral">Neutral</option>
+            </select>
+          </label>
+        </section>
+
+        <section class="setting-section">
+          <h4>Layout</h4>
+
+          <label class="setting-row">
+            <div class="setting-label">
+              <span>Masonry columns</span>
+              <small>Desktop baseline before responsive scaling.</small>
+            </div>
+            <input id="masonryColumnsInput" name="masonryColumns" type="range" min="2" max="8" step="1" />
+            <output id="masonryColumnsValue" for="masonryColumnsInput">4</output>
+          </label>
+        </section>
 
         <footer>
           <button type="button" class="soft-btn" id="cancelSettingsBtn">Cancel</button>

@@ -1,14 +1,24 @@
 :root {
   color-scheme: light;
+  --ui-font: 'Avenir Next', 'Segoe UI Variable', 'SF Pro Text', sans-serif;
   --bg: #f5f7fb;
+  --bg-layer-1: #ffe8df;
+  --bg-layer-2: #e5ecff;
   --card: rgba(255, 255, 255, 0.9);
   --text: #101421;
   --muted: #6d778d;
   --accent: #ff5f2e;
   --accent-soft: #ffe8df;
   --chip-bg: #eef2f8;
+  --chip-text: #42506d;
+  --chip-remove: #7e8aa4;
   --field-bg: #ffffff;
   --field-ring: rgba(104, 117, 146, 0.12);
+  --hero-icon-bg: linear-gradient(145deg, #f8fbff, #dce3f5);
+  --hero-icon-fg: #7484a1;
+  --ghost-btn-bg: rgba(255, 255, 255, 0.88);
+  --ghost-btn-text: #3b4967;
+  --ghost-btn-shadow: 0 8px 20px rgba(16, 20, 33, 0.1);
   --shadow-md: 0 18px 42px rgba(16, 20, 33, 0.18);
   --shadow-sm: 0 8px 20px rgba(16, 20, 33, 0.1);
   --radius-lg: 20px;
@@ -16,15 +26,59 @@
   --radius-sm: 10px;
 }
 
+[data-ui-font='geist'] {
+  --ui-font: 'Geist', 'Geist Sans', 'Inter', 'Segoe UI Variable', 'SF Pro Text', system-ui, sans-serif;
+}
+
+[data-ui-font='inter'] {
+  --ui-font: 'Inter', 'Inter Variable', 'Segoe UI Variable', 'SF Pro Text', system-ui, sans-serif;
+}
+
+[data-ui-font='lato'] {
+  --ui-font: 'Lato', 'Inter', 'Segoe UI Variable', 'SF Pro Text', system-ui, sans-serif;
+}
+
 [data-theme='dark'] {
   color-scheme: dark;
   --bg: #111726;
+  --bg-layer-1: rgba(71, 90, 139, 0.24);
+  --bg-layer-2: rgba(37, 61, 108, 0.22);
   --card: rgba(27, 35, 52, 0.9);
   --text: #eef3ff;
   --muted: #9aa7c4;
   --chip-bg: #2b3855;
+  --chip-text: #b9c7e6;
+  --chip-remove: #94a4c8;
   --field-bg: #202b41;
   --field-ring: rgba(154, 170, 204, 0.22);
+  --hero-icon-bg: #2d3a58;
+  --hero-icon-fg: #c4d2f0;
+  --ghost-btn-bg: #2a3550;
+  --ghost-btn-text: #d8e3ff;
+  --ghost-btn-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 16px 34px rgba(0, 0, 0, 0.45);
+  --shadow-sm: 0 10px 22px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme='dark'][data-dark-palette='neutral'] {
+  --bg: #0a0a0a;
+  --bg-layer-1: rgba(64, 64, 64, 0.2);
+  --bg-layer-2: rgba(38, 38, 38, 0.18);
+  --card: rgba(23, 23, 23, 0.94);
+  --text: #f5f5f5;
+  --muted: #a3a3a3;
+  --chip-bg: #2b2b2b;
+  --chip-text: #d4d4d4;
+  --chip-remove: #a3a3a3;
+  --field-bg: #1f1f1f;
+  --field-ring: rgba(163, 163, 163, 0.25);
+  --hero-icon-bg: #3a3a3a;
+  --hero-icon-fg: #fafafa;
+  --ghost-btn-bg: #343434;
+  --ghost-btn-text: #f5f5f5;
+  --ghost-btn-shadow: 0 10px 20px rgba(0, 0, 0, 0.42);
+  --shadow-md: 0 14px 30px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 8px 18px rgba(0, 0, 0, 0.38);
 }
 
 * {
@@ -35,11 +89,18 @@ body {
   margin: 0;
   width: 420px;
   min-height: 460px;
-  font-family: 'Avenir Next', 'Segoe UI Variable', 'SF Pro Text', sans-serif;
-  background: radial-gradient(circle at 15% -20%, #ffe8df 0%, transparent 55%),
-    radial-gradient(circle at 100% 0%, #e5ecff 0%, transparent 48%),
+  font-family: var(--ui-font);
+  background: radial-gradient(circle at 15% -20%, var(--bg-layer-1) 0%, transparent 55%),
+    radial-gradient(circle at 100% 0%, var(--bg-layer-2) 0%, transparent 48%),
     var(--bg);
   color: var(--text);
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
 }
 
 .popup {
@@ -63,12 +124,16 @@ body {
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: linear-gradient(145deg, #f8fbff, #dce3f5);
+  background: var(--hero-icon-bg);
   display: grid;
   place-items: center;
-  font-size: 29px;
-  color: #7484a1;
+  color: var(--hero-icon-fg);
   flex-shrink: 0;
+}
+
+.hero-icon-svg {
+  width: 28px;
+  height: 28px;
 }
 
 .eyebrow {
@@ -137,7 +202,7 @@ h1 {
   gap: 6px;
   border: 0;
   background: var(--chip-bg);
-  color: #42506d;
+  color: var(--chip-text);
   border-radius: 999px;
   padding: 4px 10px;
   font-size: 13px;
@@ -146,7 +211,7 @@ h1 {
 .tag-chip button {
   border: 0;
   background: transparent;
-  color: #7e8aa4;
+  color: var(--chip-remove);
   cursor: pointer;
   line-height: 1;
   font-size: 15px;
@@ -163,6 +228,11 @@ h1 {
   color: var(--text);
 }
 
+#tagInput::placeholder,
+textarea::placeholder {
+  color: var(--muted);
+}
+
 .tag-suggestions {
   display: flex;
   flex-wrap: wrap;
@@ -174,7 +244,7 @@ h1 {
 .tag-suggestions button {
   border: 0;
   background: var(--chip-bg);
-  color: #506082;
+  color: var(--chip-text);
   border-radius: 999px;
   font-size: 12px;
   padding: 5px 10px;
@@ -219,9 +289,9 @@ textarea:focus {
 }
 
 .ghost-btn {
-  background: rgba(255, 255, 255, 0.88);
-  color: #3b4967;
-  box-shadow: var(--shadow-sm);
+  background: var(--ghost-btn-bg);
+  color: var(--ghost-btn-text);
+  box-shadow: var(--ghost-btn-shadow);
 }
 
 .primary-btn {

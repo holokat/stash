@@ -14,7 +14,7 @@ import {
   updateBookmark,
 } from '../shared/storage.js';
 import { iconSvg } from '../shared/icons.js';
-import { applyTheme } from '../shared/theme.js';
+import { applyThemeWithPalette } from '../shared/theme.js';
 
 const ui = {
   searchInput: document.getElementById('searchInput'),
@@ -50,6 +50,9 @@ const ui = {
   masonryColumnsInput: document.getElementById('masonryColumnsInput'),
   masonryColumnsValue: document.getElementById('masonryColumnsValue'),
   cancelSettingsBtn: document.getElementById('cancelSettingsBtn'),
+  uiFontSelect: document.getElementById('uiFontSelect'),
+  lightPaletteSelect: document.getElementById('lightPaletteSelect'),
+  darkPaletteSelect: document.getElementById('darkPaletteSelect'),
 };
 
 const state = {
@@ -57,6 +60,9 @@ const state = {
   layout: 'masonry',
   sort: 'recent',
   themeMode: 'auto',
+  uiFont: 'default',
+  lightPalette: 'default',
+  darkPalette: 'default',
   masonryColumns: 4,
   query: '',
   activeTag: null,
@@ -77,6 +83,9 @@ async function init() {
   state.layout = settings.layout;
   state.sort = settings.sort;
   state.themeMode = settings.themeMode || 'auto';
+  state.uiFont = sanitizeFontValue(settings.uiFont || 'default');
+  state.lightPalette = settings.lightPalette || 'default';
+  state.darkPalette = settings.darkPalette || 'default';
   state.masonryColumns = clampMasonryColumns(settings.masonryColumns ?? 4);
   state.bulkMode = false;
   state.selectedIds.clear();
@@ -84,7 +93,7 @@ async function init() {
   ui.sortSelect.value = state.sort;
   setLayoutButtons();
   setThemeButtons();
-  applyTheme(state.themeMode);
+  applyCurrentTheme();
   applyMasonryColumns();
 
   await refreshBookmarks();
@@ -97,7 +106,7 @@ async function init() {
 
   setInterval(() => {
     if (state.themeMode === 'auto') {
-      applyTheme('auto');
+      applyCurrentTheme();
     }
   }, 60_000);
 
@@ -174,7 +183,7 @@ function bindEvents() {
     button.addEventListener('click', async () => {
       state.themeMode = button.dataset.themeMode || 'auto';
       setThemeButtons();
-      applyTheme(state.themeMode);
+      applyCurrentTheme();
       await setSettings({ themeMode: state.themeMode });
     });
   }
@@ -188,12 +197,30 @@ function bindEvents() {
   ui.settingsBtn.addEventListener('click', () => {
     ui.masonryColumnsInput.value = String(state.masonryColumns);
     ui.masonryColumnsValue.textContent = String(state.masonryColumns);
+    ui.uiFontSelect.value = state.uiFont;
+    ui.lightPaletteSelect.value = state.lightPalette;
+    ui.darkPaletteSelect.value = state.darkPalette;
     ui.settingsDialog.showModal();
+  });
+
+  ui.uiFontSelect.addEventListener('change', (event) => {
+    state.uiFont = sanitizeFontValue(event.target.value);
+    applyCurrentTheme();
   });
 
   ui.masonryColumnsInput.addEventListener('input', (event) => {
     const value = clampMasonryColumns(Number(event.target.value));
     ui.masonryColumnsValue.textContent = String(value);
+  });
+
+  ui.lightPaletteSelect.addEventListener('change', (event) => {
+    state.lightPalette = sanitizePaletteValue(event.target.value, 'light');
+    applyCurrentTheme();
+  });
+
+  ui.darkPaletteSelect.addEventListener('change', (event) => {
+    state.darkPalette = sanitizePaletteValue(event.target.value, 'dark');
+    applyCurrentTheme();
   });
 
   ui.cancelSettingsBtn.addEventListener('click', () => {
@@ -203,9 +230,21 @@ function bindEvents() {
   ui.settingsForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     const next = clampMasonryColumns(Number(ui.masonryColumnsInput.value));
+    const nextUiFont = sanitizeFontValue(ui.uiFontSelect.value);
+    const nextLightPalette = sanitizePaletteValue(ui.lightPaletteSelect.value, 'light');
+    const nextDarkPalette = sanitizePaletteValue(ui.darkPaletteSelect.value, 'dark');
     state.masonryColumns = next;
+    state.uiFont = nextUiFont;
+    state.lightPalette = nextLightPalette;
+    state.darkPalette = nextDarkPalette;
     applyMasonryColumns();
-    await setSettings({ masonryColumns: next });
+    applyCurrentTheme();
+    await setSettings({
+      masonryColumns: next,
+      uiFont: nextUiFont,
+      lightPalette: nextLightPalette,
+      darkPalette: nextDarkPalette,
+    });
     ui.settingsDialog.close();
   });
 
@@ -578,6 +617,14 @@ function setThemeButtons() {
   }
 }
 
+function applyCurrentTheme() {
+  applyThemeWithPalette(state.themeMode, {
+    uiFont: state.uiFont,
+    lightPalette: state.lightPalette,
+    darkPalette: state.darkPalette,
+  });
+}
+
 function applyMasonryColumns() {
   const baseColumns = clampMasonryColumns(state.masonryColumns);
   const effectiveColumns = Math.max(1, Math.min(8, baseColumns + masonryColumnAdjustment(window.innerWidth)));
@@ -595,6 +642,21 @@ function masonryColumnAdjustment(width) {
 function clampMasonryColumns(value) {
   if (!Number.isFinite(value)) return 4;
   return Math.max(2, Math.min(8, Math.round(value)));
+}
+
+function sanitizePaletteValue(value, theme) {
+  if (theme === 'light') {
+    return value === 'default' ? 'default' : 'default';
+  }
+
+  return value === 'neutral' ? 'neutral' : 'default';
+}
+
+function sanitizeFontValue(value) {
+  if (value === 'geist') return 'geist';
+  if (value === 'inter') return 'inter';
+  if (value === 'lato') return 'lato';
+  return 'default';
 }
 
 function isTypingTarget(target) {

@@ -8,7 +8,7 @@ import {
   upsertBookmarkFromTab,
 } from '../shared/storage.js';
 import { getTabPageMetadata } from '../shared/page-metadata.js';
-import { applyTheme } from '../shared/theme.js';
+import { applyThemeWithPalette } from '../shared/theme.js';
 
 const ui = {
   statusTitle: document.getElementById('statusTitle'),
@@ -36,7 +36,11 @@ const debouncedSaveNote = debounce(async (note) => {
 async function init() {
   bindEvents();
   const settings = await getSettings();
-  applyTheme(settings.themeMode || 'auto');
+  applyThemeWithPalette(settings.themeMode || 'auto', {
+    uiFont: settings.uiFont || 'default',
+    lightPalette: settings.lightPalette || 'default',
+    darkPalette: settings.darkPalette || 'default',
+  });
 
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   if (!tab?.url || !isSupportedBookmarkUrl(tab.url)) {
