@@ -350,7 +350,11 @@
       '<div style="position:relative;padding:clamp(18px,2.5vw,28px) clamp(16px,2.6vw,34px) 0;z-index:5;">' +
         '<div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:22px;">' +
           '<div style="display:flex;align-items:center;gap:11px;">' +
-            '<img src="icons/logo.png" width="40" height="40" alt="" style="display:block;width:40px;height:40px;object-fit:contain;filter:drop-shadow(0 8px 16px rgba(242,92,12,.36));flex:none;">' +
+            '<div style="position:relative;width:34px;height:34px;">' +
+              '<div style="position:absolute;inset:0;border-radius:10px;background:linear-gradient(135deg,var(--ac2),var(--ac));box-shadow:0 0 18px var(--acGlow);"></div>' +
+              '<div style="position:absolute;inset:0;border-radius:10px;box-shadow:inset 0 1px 0 rgba(255,255,255,.4), inset 0 -2px 5px rgba(0,0,0,.18);"></div>' +
+              '<svg width="34" height="34" viewBox="0 0 34 34" fill="none" style="position:absolute;inset:0;"><circle cx="17" cy="17" r="11" stroke="var(--on)" stroke-width="1.4" opacity=".4"/><circle cx="17" cy="17" r="9" stroke="var(--on)" stroke-width="1.7"/><g stroke="var(--on)" stroke-width="1.8" stroke-linecap="round"><path d="M19 19 22.7 22.7"/><path d="M15 19 11.3 22.7"/><path d="M15 15 11.3 11.3"/><path d="M19 15 22.7 11.3"/></g><circle cx="17" cy="17" r="2.6" fill="var(--on)"/></svg>' +
+            '</div>' +
             '<span style="font-size:22px;font-weight:700;letter-spacing:.22em;color:' + th.brand + ';">STASH</span>' +
           '</div>' +
           '<div style="display:flex;align-items:center;gap:10px;flex:1 1 260px;justify-content:flex-end;min-width:220px;">' +

@@ -90,8 +90,10 @@
   // ---------- UI pieces ----------
   function logo(size) {
     const s = size || 44;
-    return '<div style="position:relative;width:' + s + 'px;height:' + s + 'px;flex:none;display:grid;place-items:center;">' +
-      '<img src="icons/logo.png" width="' + s + '" height="' + s + '" alt="" style="display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 10px 18px rgba(242,92,12,.38));">' +
+    return '<div style="position:relative;width:' + s + 'px;height:' + s + 'px;flex:none;">' +
+      '<div style="position:absolute;inset:0;border-radius:' + (s * 0.3) + 'px;background:linear-gradient(135deg,' + ACCENT2 + ',' + ACCENT + ');box-shadow:0 0 22px rgba(242,116,43,.55);"></div>' +
+      '<div style="position:absolute;inset:0;border-radius:' + (s * 0.3) + 'px;box-shadow:inset 0 1px 0 rgba(255,255,255,.4), inset 0 -2px 6px rgba(0,0,0,.2);"></div>' +
+      '<svg width="' + s + '" height="' + s + '" viewBox="0 0 34 34" fill="none" style="position:absolute;inset:0;"><circle cx="17" cy="17" r="11" stroke="' + ON + '" stroke-width="1.4" opacity=".4"/><circle cx="17" cy="17" r="9" stroke="' + ON + '" stroke-width="1.7"/><g stroke="' + ON + '" stroke-width="1.8" stroke-linecap="round"><path d="M19 19 22.7 22.7"/><path d="M15 19 11.3 22.7"/><path d="M15 15 11.3 11.3"/><path d="M19 15 22.7 11.3"/></g><circle cx="17" cy="17" r="2.6" fill="' + ON + '"/></svg>' +
     '</div>';
   }
 
