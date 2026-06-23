@@ -1,7 +1,7 @@
 export const DEFAULT_SETTINGS = {
   layout: 'masonry',
   sort: 'recent',
-  themeMode: 'auto',
+  themeMode: 'dark',
   lightPalette: 'default',
   darkPalette: 'default',
   uiFont: 'default',

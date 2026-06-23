@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stash this tab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      width: 380px;
+      background: #0A0A0C;
+      color: #F4F2EE;
+      font-family: 'Space Grotesk', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    input, textarea { outline: none; border: none; font-family: inherit; background: transparent; color: inherit; resize: none; }
+    input::placeholder, textarea::placeholder { color: #6f6f78; }
+    .vsi { transition: all .18s ease; }
+    .vsi:hover { filter: brightness(1.14); }
+    .chip { transition: all .18s ease; }
+    .chip:hover { filter: brightness(1.12); transform: translateY(-1px); }
+    .btn { transition: transform .18s ease, filter .18s ease, background .18s ease, border-color .18s ease; }
+    .btn:hover { filter: brightness(1.08); }
+    .btnP:hover { transform: translateY(-1px); }
+    .btnG:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.2); }
+    textarea::-webkit-scrollbar { width: 8px; }
+    textarea::-webkit-scrollbar-thumb { background: rgba(255,255,255,.12); border-radius: 8px; }
+    @keyframes pIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes glow { 0%,100% { opacity:.55; } 50% { opacity:.85; } }
+    #root { animation: pIn .24s cubic-bezier(.2,.8,.2,1); }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="popup.js"></script>
+</body>
+</html>

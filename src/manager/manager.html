@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stash Library</title>
+    <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
     <link rel="stylesheet" href="manager.css" />
   </head>
   <body>
@@ -11,8 +12,21 @@
       <div class="topbar-row">
         <div class="brand-wrap">
           <h1>
-            <img class="brand-icon" src="../../assets/icons/icon512.png" alt="" />
-            <span>Stash</span>
+            <span class="brand-icon" aria-hidden="true">
+              <span class="brand-icon-fill"></span>
+              <svg viewBox="0 0 34 34" fill="none">
+                <circle cx="17" cy="17" r="11" stroke="#1a0f0a" stroke-width="1.4" opacity=".4"></circle>
+                <circle cx="17" cy="17" r="9" stroke="#1a0f0a" stroke-width="1.7"></circle>
+                <g stroke="#1a0f0a" stroke-width="1.8" stroke-linecap="round">
+                  <path d="M19 19 22.7 22.7"></path>
+                  <path d="M15 19 11.3 22.7"></path>
+                  <path d="M15 15 11.3 11.3"></path>
+                  <path d="M19 15 22.7 11.3"></path>
+                </g>
+                <circle cx="17" cy="17" r="2.6" fill="#1a0f0a"></circle>
+              </svg>
+            </span>
+            <span>STASH</span>
           </h1>
         </div>
 
@@ -21,7 +35,7 @@
             id="searchInput"
             type="search"
             autocomplete="off"
-            placeholder="Search title, URL, tags, or notes…"
+            placeholder="Search the vault…"
             aria-label="Search bookmarks"
           />
           <kbd>/</kbd>
@@ -44,7 +58,9 @@
 
       <div class="filter-row">
         <div class="tag-scroll">
+          <button id="tagScrollLeftBtn" class="tag-scroll-btn" type="button" aria-label="Scroll tags left" title="Scroll tags left" hidden></button>
           <div id="tagList" class="tag-list"></div>
+          <button id="tagScrollRightBtn" class="tag-scroll-btn" type="button" aria-label="Scroll tags right" title="Scroll tags right" hidden></button>
         </div>
 
         <div class="filter-controls">

@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STASH - Local-first tab vault</title>
+    <meta
+      name="description"
+      content="STASH grabs any tab in one click, tags it, and keeps it searchable in a beautiful local vault. No account. No cloud."
+    />
+    <meta property="og:title" content="STASH - Local-first tab vault" />
+    <meta
+      property="og:description"
+      content="One-click tab saving, tags, search, and a private local vault for Chrome."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0B0B0D" />
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg?v=stash-logomark-20260623" />
+    <link rel="alternate icon" href="assets/icons/icon48.png" />
+    <link rel="stylesheet" href="assets/fonts/fonts.css" />
+    <link rel="stylesheet" href="landing.css?v=level-mock-20260623" />
+  </head>
+  <body>
+    <div id="top" class="lkroot" data-theme="dark">
+      <div class="lkbackdrop" aria-hidden="true"></div>
+
+      <nav class="lknav" aria-label="Primary navigation">
+        <a class="lkbrand lkwheelBtn" href="#top" aria-label="STASH home">
+          <span class="lklogo">
+            <span class="lklogoFill"></span>
+            <svg class="lknavwheel" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+              <circle cx="17" cy="17" r="11" stroke="#1a0f0a" stroke-width="1.4" opacity=".4"></circle>
+              <circle cx="17" cy="17" r="9" stroke="#1a0f0a" stroke-width="1.7"></circle>
+              <g stroke="#1a0f0a" stroke-width="1.8" stroke-linecap="round">
+                <path d="M19 19 22.7 22.7"></path>
+                <path d="M15 19 11.3 22.7"></path>
+                <path d="M15 15 11.3 11.3"></path>
+                <path d="M19 15 22.7 11.3"></path>
+              </g>
+              <circle cx="17" cy="17" r="2.6" fill="#1a0f0a"></circle>
+            </svg>
+          </span>
+          <span class="lkwordmark">STASH</span>
+        </a>
+
+        <div class="lknavlinks">
+          <a class="lklink" href="#features">Features</a>
+          <a class="lklink" href="#how">How it works</a>
+          <a class="lklink" href="https://github.com/karnagebitcoin/stash" target="_blank" rel="noopener">GitHub</a>
+          <button class="lkthemeBtn" type="button" data-theme-toggle aria-label="Toggle light and dark mode" title="Toggle theme">
+            <svg class="lksun" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+            </svg>
+            <svg class="lkmoon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+          <a class="lkcta lkspark" href="#install">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M12 0C8.21 0 4.831 1.757 2.632 4.501l3.953 6.848A5.454 5.454 0 0 1 12 6.545h10.691A12 12 0 0 0 12 0zM1.931 5.47A11.943 11.943 0 0 0 0 12c0 6.012 4.42 10.991 10.189 11.864l3.953-6.847a5.45 5.45 0 0 1-6.865-2.29zm13.342 2.166a5.446 5.446 0 0 1 1.45 7.09l.002.001h-.002l-5.344 9.257c.206.01.413.016.621.016 6.627 0 12-5.373 12-12 0-1.54-.29-3.011-.818-4.364zM12 16.364a4.364 4.364 0 1 1 0-8.728 4.364 4.364 0 0 1 0 8.728z"
+                fill="currentColor"
+              ></path>
+            </svg>
+            Add to Chrome
+          </a>
+        </div>
+      </nav>
+
+      <header class="lkhero">
+        <div class="lkheroCopy">
+          <h1 class="lkh1" data-hero data-hd="130">
+            Your someday-list,<br />finally in a
+            <span>vault.</span>
+          </h1>
+          <p data-hero data-hd="230">
+            STASH grabs any tab in one click, tags it, and keeps it searchable in a beautiful local vault.
+            No account. No cloud. No 4,000-tab guilt.
+          </p>
+          <div class="lkherobtns" data-hero data-hd="330">
+            <a class="lkcta lkctaHero lkspark" href="#install">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M12 0C8.21 0 4.831 1.757 2.632 4.501l3.953 6.848A5.454 5.454 0 0 1 12 6.545h10.691A12 12 0 0 0 12 0zM1.931 5.47A11.943 11.943 0 0 0 0 12c0 6.012 4.42 10.991 10.189 11.864l3.953-6.847a5.45 5.45 0 0 1-6.865-2.29zm13.342 2.166a5.446 5.446 0 0 1 1.45 7.09l.002.001h-.002l-5.344 9.257c.206.01.413.016.621.016 6.627 0 12-5.373 12-12 0-1.54-.29-3.011-.818-4.364zM12 16.364a4.364 4.364 0 1 1 0-8.728 4.364 4.364 0 0 1 0 8.728z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+              Add to Chrome
+            </a>
+            <a class="lkghost" href="https://github.com/karnagebitcoin/stash" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.22-3.37-1.22-.46-1.18-1.11-1.49-1.11-1.49-.9-.64.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.57 2.34 1.12 2.91.85.09-.66.35-1.12.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05A9.3 9.3 0 0 1 12 6.84c.85 0 1.71.12 2.51.34 1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9l-.01 2.82c0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"></path>
+              </svg>
+              Download
+            </a>
+          </div>
+          <div class="lkcaption" data-hero data-hd="430">Free &amp; open source · Works offline · v1.0</div>
+        </div>
+
+        <div class="lkheromock" data-par="0.06" data-hero data-hd="280">
+          <div class="lkpop">
+            <div class="lkpopFrame">
+              <div class="lkpopHeader">
+                <div class="lkpopBrand">
+                  <span class="lklogo lklogoSmall">
+                    <span class="lklogoFill"></span>
+                    <svg viewBox="0 0 34 34" fill="none" aria-hidden="true">
+                      <circle cx="17" cy="17" r="9" stroke="#1a0f0a" stroke-width="2"></circle>
+                      <g stroke="#1a0f0a" stroke-width="2" stroke-linecap="round">
+                        <path d="M19 19 22.7 22.7"></path>
+                        <path d="M15 19 11.3 22.7"></path>
+                        <path d="M15 15 11.3 11.3"></path>
+                        <path d="M19 15 22.7 11.3"></path>
+                      </g>
+                      <circle cx="17" cy="17" r="2.6" fill="#1a0f0a"></circle>
+                    </svg>
+                  </span>
+                  <span>STASH</span>
+                </div>
+                <div class="lkpopSearch">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="11" cy="11" r="7"></circle>
+                    <path d="m20 20-3.5-3.5"></path>
+                  </svg>
+                  <span>Search the vault…</span>
+                </div>
+              </div>
+              <div class="lkpopTags">
+                <span class="lkpopTag active">All · 36</span>
+                <span class="lkpopTag">design</span>
+                <span class="lkpopTag">dev</span>
+                <span class="lkpopTag">ai</span>
+              </div>
+              <div class="lkpopGrid">
+                <article class="lkmini">
+                  <div>
+                    <img class="lkmfav" src="https://www.google.com/s2/favicons?sz=64&amp;domain=figma.com" alt="" />
+                    <span>design</span>
+                  </div>
+                  <h3>Figma — Files</h3>
+                  <p>figma.com</p>
+                </article>
+                <article class="lkmini">
+                  <div>
+                    <img class="lkmfav" src="https://www.google.com/s2/favicons?sz=64&amp;domain=linear.app" alt="" />
+                    <span>dev</span>
+                  </div>
+                  <h3>Linear</h3>
+                  <p>linear.app</p>
+                </article>
+                <article class="lkmini">
+                  <div>
+                    <img class="lkmfav" src="https://www.google.com/s2/favicons?sz=64&amp;domain=vercel.com" alt="" />
+                    <span>dev</span>
+                  </div>
+                  <h3>Vercel</h3>
+                  <p>vercel.com</p>
+                </article>
+                <article class="lkmini">
+                  <div>
+                    <img class="lkmfav" src="https://www.google.com/s2/favicons?sz=64&amp;domain=github.com" alt="" />
+                    <span>dev</span>
+                  </div>
+                  <h3>GitHub</h3>
+                  <p>github.com</p>
+                </article>
+                <article class="lkmini">
+                  <div>
+                    <img class="lkmfav" src="https://www.google.com/s2/favicons?sz=64&amp;domain=stripe.com" alt="" />
+                    <span>finance</span>
+                  </div>
+                  <h3>Stripe Docs</h3>
+                  <p>stripe.com</p>
+                </article>
+                <article class="lkmini">
+                  <div>
+                    <img class="lkmfav" src="https://www.google.com/s2/favicons?sz=64&amp;domain=notion.so" alt="" />
+                    <span>reading</span>
+                  </div>
+                  <h3>Notion</h3>
+                  <p>notion.so</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="lkscrollCue" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="m6 9 6 6 6-6"></path>
+        </svg>
+      </div>
+
+      <section class="lksec lkshortcutSec">
+        <p class="lkeyebrow" data-reveal>NEVER LEAVES THE KEYBOARD</p>
+        <div class="lkshortcuts" data-reveal data-reveal-delay="80">
+          <div class="lkshortcut">
+            <div><kbd>⌘</kbd><kbd>⇧</kbd><kbd>S</kbd></div>
+            <p>Quick-save the tab</p>
+          </div>
+          <div class="lkshortcut">
+            <div><kbd>⌘</kbd><kbd>⇧</kbd><kbd>K</kbd></div>
+            <p>Open the vault</p>
+          </div>
+          <div class="lkshortcut">
+            <div><kbd>/</kbd></div>
+            <p>Jump to search</p>
+          </div>
+        </div>
+      </section>
+
+      <main>
+        <section id="features" class="lksec lkfeatures">
+          <div class="lksectionHead" data-reveal>
+            <p class="lkeyebrow">WHY YOU'LL LIVE IN IT</p>
+            <h2 class="lkh2">
+              A vault that's <span>faster</span> than the bookmark bar you keep ignoring.
+            </h2>
+          </div>
+
+          <div class="lkbento">
+            <article class="lktile lktileBig" data-reveal>
+              <span class="lktileGlow" aria-hidden="true"></span>
+              <div class="lkwheel">
+                <span class="lklogoFill"></span>
+                <svg viewBox="0 0 34 34" fill="none" aria-hidden="true">
+                  <circle cx="17" cy="17" r="11" stroke="#1a0f0a" stroke-width="1.4" opacity=".4"></circle>
+                  <circle cx="17" cy="17" r="9" stroke="#1a0f0a" stroke-width="1.7"></circle>
+                  <g stroke="#1a0f0a" stroke-width="1.8" stroke-linecap="round">
+                    <path d="M19 19 22.7 22.7"></path>
+                    <path d="M15 19 11.3 22.7"></path>
+                    <path d="M15 15 11.3 11.3"></path>
+                    <path d="M19 15 22.7 11.3"></path>
+                  </g>
+                  <circle cx="17" cy="17" r="2.6" fill="#1a0f0a"></circle>
+                </svg>
+              </div>
+              <div>
+                <h3>One click. Stashed.</h3>
+                <p>
+                  Hit the vault wheel on any tab and it lands in your collection — title, favicon and
+                  domain captured automatically. Hover the wheel up top to spin it.
+                </p>
+              </div>
+            </article>
+
+            <article class="lktile" data-reveal data-reveal-delay="80">
+              <span class="lktileGlow" aria-hidden="true"></span>
+              <h3>Tags that actually filter</h3>
+              <p>design, dev, ai, finance… tap one and the whole vault narrows instantly.</p>
+              <div class="lkchips">
+                <span class="lkchip active">design</span>
+                <span class="lkchip">dev</span>
+                <span class="lkchip">ai</span>
+                <span class="lkchip">finance</span>
+                <span class="lkchip">reading</span>
+              </div>
+            </article>
+
+            <article class="lktile" data-reveal data-reveal-delay="140">
+              <span class="lktileGlow" aria-hidden="true"></span>
+              <h3>Search everything</h3>
+              <p>Title, domain, note or tag — fuzzy matching across the whole vault as you type.</p>
+              <div class="lkfakeSearch">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="11" cy="11" r="7"></circle>
+                  <path d="m20 20-3.5-3.5"></path>
+                </svg>
+                <span>figma<i></i></span>
+              </div>
+            </article>
+
+            <article class="lktile lktileSmall" data-reveal>
+              <span class="lktileGlow" aria-hidden="true"></span>
+              <div class="lkswatches" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+              <h3>Ink &amp; Aurora</h3>
+              <p>A dark vault lit by an ember aurora. Light mode when you need it.</p>
+            </article>
+
+            <article class="lktile lktileSmall" data-reveal data-reveal-delay="80">
+              <span class="lktileGlow" aria-hidden="true"></span>
+              <svg class="lkfeatureIcon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="4" y="10" width="16" height="11" rx="2.5"></rect>
+                <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+                <circle cx="12" cy="15" r="1.6"></circle>
+              </svg>
+              <h3>Local &amp; private</h3>
+              <p>Everything lives in your browser. No account, no sync server, no tracking.</p>
+            </article>
+
+            <article class="lktile lktileSmall" data-reveal data-reveal-delay="140">
+              <span class="lktileGlow" aria-hidden="true"></span>
+              <svg class="lkfeatureIcon fill" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.22-3.37-1.22-.46-1.18-1.11-1.49-1.11-1.49-.9-.64.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.57 2.34 1.12 2.91.85.09-.66.35-1.12.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05A9.3 9.3 0 0 1 12 6.84c.85 0 1.71.12 2.51.34 1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9l-.01 2.82c0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"></path>
+              </svg>
+              <h3>Open source</h3>
+              <p>MIT-licensed and on GitHub. Read it, fork it, ship your own build.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="how" class="lksec lkhow">
+          <div class="lksectionHead centered" data-reveal>
+            <p class="lkeyebrow">THREE STEPS, ZERO FRICTION</p>
+            <h2 class="lkh2">From open tab to <span>filed away</span></h2>
+          </div>
+          <div class="lksteps">
+            <article class="lkstep" data-reveal>
+              <div class="lkstepNum">1</div>
+              <h3>Install</h3>
+              <p>Add STASH to Chrome, or grab a release straight from GitHub and load it unpacked.</p>
+            </article>
+            <article class="lkstep" data-reveal data-reveal-delay="120">
+              <div class="lkstepNum">2</div>
+              <h3>Stash</h3>
+              <p>Click the vault wheel on any tab. STASH grabs the title, favicon and domain in a beat.</p>
+            </article>
+            <article class="lkstep" data-reveal data-reveal-delay="240">
+              <div class="lkstepNum">3</div>
+              <h3>Find</h3>
+              <p>Open the vault, search or filter by tag, and you're back where you left off.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="install" class="lksec lkinstall">
+          <div class="lksecpad" data-reveal>
+            <h2 class="lkinstallh2">Get <span>STASH</span></h2>
+            <p>It's free, open source, and lives entirely in your browser. Two ways in:</p>
+            <div class="lkinstallBtns">
+              <a class="lkcta lkctaHero lkspark" href="https://chrome.google.com/webstore" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M12 0C8.21 0 4.831 1.757 2.632 4.501l3.953 6.848A5.454 5.454 0 0 1 12 6.545h10.691A12 12 0 0 0 12 0zM1.931 5.47A11.943 11.943 0 0 0 0 12c0 6.012 4.42 10.991 10.189 11.864l3.953-6.847a5.45 5.45 0 0 1-6.865-2.29zm13.342 2.166a5.446 5.446 0 0 1 1.45 7.09l.002.001h-.002l-5.344 9.257c.206.01.413.016.621.016 6.627 0 12-5.373 12-12 0-1.54-.29-3.011-.818-4.364zM12 16.364a4.364 4.364 0 1 1 0-8.728 4.364 4.364 0 0 1 0 8.728z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+                Add to Chrome
+              </a>
+              <a class="lkghost" href="https://github.com/karnagebitcoin/stash" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.22-3.37-1.22-.46-1.18-1.11-1.49-1.11-1.49-.9-.64.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.57 2.34 1.12 2.91.85.09-.66.35-1.12.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05A9.3 9.3 0 0 1 12 6.84c.85 0 1.71.12 2.51.34 1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9l-.01 2.82c0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"></path>
+                </svg>
+                Download release
+              </a>
+            </div>
+            <div class="lkcaption">v1.0 · MIT license · Chrome 110+</div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="lkfooter">
+        <a class="lkbrand lkwheelBtn" href="#top" aria-label="STASH home">
+          <span class="lklogo lklogoFooter">
+            <span class="lklogoFill"></span>
+            <svg viewBox="0 0 34 34" fill="none" aria-hidden="true">
+              <circle cx="17" cy="17" r="9" stroke="#1a0f0a" stroke-width="2"></circle>
+              <g stroke="#1a0f0a" stroke-width="2" stroke-linecap="round">
+                <path d="M19 19 22.7 22.7"></path>
+                <path d="M15 19 11.3 22.7"></path>
+                <path d="M15 15 11.3 11.3"></path>
+                <path d="M19 15 22.7 11.3"></path>
+              </g>
+              <circle cx="17" cy="17" r="2.6" fill="#1a0f0a"></circle>
+            </svg>
+          </span>
+          <span class="lkwordmark small">STASH</span>
+        </a>
+        <p><span class="lkgem">Made for tab hoarders.</span></p>
+        <div>
+          <a class="lklink" href="#features">Features</a>
+          <a class="lklink" href="#how">How it works</a>
+          <a class="lklink" href="https://github.com/karnagebitcoin/stash" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </footer>
+    </div>
+
+    <script src="landing.js"></script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: #050507;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: 'Space Grotesk', sans-serif;
+  transition: background .3s ease;
+}
+input { outline: none; border: none; font-family: inherit; background: transparent; }
+.vsearch::placeholder { color: #8a8a90; }
+
+@keyframes toastUp { from { opacity:0; transform:translate(-50%,16px); } to { opacity:1; transform:translate(-50%,0); } }
+@keyframes vFadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes vModalIn { from { opacity:0; transform:translateY(14px) scale(.98); } to { opacity:1; transform:translateY(0) scale(1); } }
+
+.vbig:hover { filter:brightness(1.05); transform:scale(1.04); }
+.vfeat:hover .vfeatAct { opacity:1 !important; transform:translateY(0) !important; }
+.vfeat:hover .vfeatHero { transform:scale(1.04); }
+.vcard:hover { transform:translateY(-4px); box-shadow:0 22px 44px -16px var(--acSh) !important; border-color:var(--acB) !important; }
+.vcard:hover .vact { opacity:1 !important; transform:translateY(0) !important; }
+.vcard:hover .vhero { transform:scale(1.06); }
+.vrow:hover { background: var(--rowHover) !important; }
+.vrow:hover .vact { opacity:1 !important; transform:translateX(0) !important; }
+.vactBtn:hover { background:var(--ac) !important; color:#fff !important; }
+.vtag:hover { filter:brightness(1.08); }
+.vundo:hover { filter:brightness(1.15); }
+.vsi:hover { filter:brightness(1.12); }

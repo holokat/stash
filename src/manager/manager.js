@@ -27,6 +27,8 @@ const ui = {
   importBtn: document.getElementById('importBtn'),
   importFileInput: document.getElementById('importFileInput'),
   tagList: document.getElementById('tagList'),
+  tagScrollLeftBtn: document.getElementById('tagScrollLeftBtn'),
+  tagScrollRightBtn: document.getElementById('tagScrollRightBtn'),
   bulkBar: document.getElementById('bulkBar'),
   bulkCount: document.getElementById('bulkCount'),
   selectVisibleBtn: document.getElementById('selectVisibleBtn'),
@@ -112,6 +114,7 @@ async function init() {
 
   window.addEventListener('resize', debounce(() => {
     applyMasonryColumns();
+    syncTagScrollButtons();
   }, 120));
 }
 
@@ -138,6 +141,8 @@ function hydrateControlIcons() {
   ui.exportAllBtn.innerHTML = iconSvg('download', { size: 15 });
   ui.importBtn.innerHTML = iconSvg('upload', { size: 15 });
   ui.settingsBtn.innerHTML = iconSvg('settings', { size: 15 });
+  ui.tagScrollLeftBtn.innerHTML = iconSvg('chevronLeft', { size: 15 });
+  ui.tagScrollRightBtn.innerHTML = iconSvg('chevronRight', { size: 15 });
 }
 
 function hydrateThemeIcons() {
@@ -344,6 +349,16 @@ function bindEvents() {
     render();
   });
 
+  ui.tagList.addEventListener('scroll', debounce(syncTagScrollButtons, 10), { passive: true });
+
+  ui.tagScrollLeftBtn.addEventListener('click', () => {
+    scrollTagListBy(-getTagScrollAmount());
+  });
+
+  ui.tagScrollRightBtn.addEventListener('click', () => {
+    scrollTagListBy(getTagScrollAmount());
+  });
+
   ui.bookmarkContainer.addEventListener('click', onBookmarkContainerClick);
 
   ui.cancelEditBtn.addEventListener('click', () => {
@@ -492,6 +507,7 @@ function renderTagList() {
   ];
 
   ui.tagList.innerHTML = html.join('');
+  requestAnimationFrame(syncTagScrollButtons);
 }
 
 function tagFilterMarkup(label, count, tag, active) {
@@ -512,6 +528,24 @@ function renderBulkBar() {
   ui.bulkToggleBtn.setAttribute('title', state.bulkMode ? 'Exit bulk mode' : 'Bulk mode');
   ui.bulkToggleBtn.setAttribute('aria-label', state.bulkMode ? 'Exit bulk mode' : 'Bulk mode');
   ui.bulkCount.textContent = `${state.selectedIds.size} selected`;
+}
+
+function getTagScrollAmount() {
+  return Math.max(180, Math.floor(ui.tagList.clientWidth * 0.7));
+}
+
+function scrollTagListBy(amount) {
+  ui.tagList.scrollBy({ left: amount, behavior: 'smooth' });
+}
+
+function syncTagScrollButtons() {
+  const maxScrollLeft = ui.tagList.scrollWidth - ui.tagList.clientWidth;
+  const canScroll = maxScrollLeft > 2;
+  const isAtStart = ui.tagList.scrollLeft <= 2;
+  const isAtEnd = ui.tagList.scrollLeft >= maxScrollLeft - 2;
+
+  ui.tagScrollLeftBtn.hidden = !canScroll || isAtStart;
+  ui.tagScrollRightBtn.hidden = !canScroll || isAtEnd;
 }
 
 function renderCards() {

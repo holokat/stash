@@ -73,6 +73,8 @@ const ICONS = {
     '<circle cx="7" cy="12" r="2"></circle>',
     '<circle cx="19" cy="18" r="2"></circle>',
   ],
+  chevronLeft: ['<path d="m15 18-6-6 6-6"></path>'],
+  chevronRight: ['<path d="m9 18 6-6-6-6"></path>'],
 };
 
 export function iconSvg(name, { size = 16, cls = '' } = {}) {
