@@ -226,6 +226,8 @@
       suggestions = Object.keys(counts).concat(PRESET_TAGS);
     }
     render();
+    const ti = root.querySelector('[data-focus-id="taginput"]');
+    if (ti) ti.focus();
   }
 
   if (hasChrome && chrome.tabs) {

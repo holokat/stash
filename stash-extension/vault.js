@@ -80,7 +80,7 @@
     const min = view === 'columns' ? 168 : 210;
     const gap = 16;
     let n = Math.floor((inner + gap) / (min + gap));
-    const cap = view === 'columns' ? 8 : 6;
+    const cap = 6;
     return Math.max(1, Math.min(cap, n));
   }
 

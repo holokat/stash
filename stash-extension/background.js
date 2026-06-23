@@ -109,29 +109,4 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (msg && msg.type === 'save-active-tab') { saveActiveTab().then(() => sendResponse({ ok: true })); return true; }
 });
 
-// first-run welcome set
-chrome.runtime.onInstalled.addListener(async (details) => {
-  if (details.reason !== 'install') return;
-  const existing = await getBookmarks();
-  if (existing.length) return;
-  const now = Date.now();
-  const day = 86400000;
-  const seed = [
-    ['Welcome to STASH', 'github.com/holokat/stash', 'docs', 'Press ⌘⇧S on any tab to stash it. ⌘⇧K opens this vault.', 0],
-    ['Figma', 'figma.com', 'design', 'Your design files.', 2],
-    ['GitHub', 'github.com', 'dev', 'Repos, issues and pull requests.', 3],
-    ['Anthropic Console', 'console.anthropic.com', 'ai', 'Claude API keys, usage and logs.', 5],
-    ['Linear', 'linear.app', 'tools', 'Issue tracking and planning.', 6],
-    ['Hacker News', 'news.ycombinator.com', 'reading', 'Tech news and discussion.', 9]
-  ].map((d, i) => ({
-    id: i + 1,
-    title: d[0],
-    domain: parseDomain(d[1]),
-    tag: d[2],
-    note: d[3],
-    url: 'https://' + d[1],
-    favIconUrl: '',
-    savedAt: now - d[4] * day
-  }));
-  await chrome.storage.local.set({ bookmarks: seed });
-});
+// New installs start with an empty stash — no seeded bookmarks.
