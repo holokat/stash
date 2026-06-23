@@ -21,7 +21,7 @@ Stash is a local-only bookmark extension inspired by MyMind patterns.
 - Bulk mode: select visible, clear, bulk add tag, bulk copy URLs, bulk export, bulk delete.
 - Export all or selected bookmarks to JSON; import supported.
 - Keyboard shortcuts:
-  - `/` focuses search in library.
+  - `⌘K` / `Ctrl+K` focuses search in library.
   - `Ctrl+Shift+K` (`Cmd+Shift+K` on Mac) opens the Stash library.
   - `Ctrl+Shift+S` (`Cmd+Shift+S` on Mac) quick-saves active tab.
 
