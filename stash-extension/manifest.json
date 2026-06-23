@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "STASH — Tab Vault",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Stash any tab in one click and keep it searchable in a beautiful, local-first vault. No account, no cloud.",
   "action": {
     "default_popup": "popup.html",
@@ -10,7 +10,7 @@
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["tabs", "storage", "activeTab"],
+  "permissions": ["tabs", "storage"],
   "commands": {
     "save-tab": {
       "suggested_key": { "default": "Ctrl+Shift+S", "mac": "Command+Shift+S" },

@@ -36,8 +36,8 @@ via `chrome.storage.local`.
 
 - **Storage**: bookmarks live under `chrome.storage.local` key `bookmarks`; view/sort/theme under `settings`. The vault also falls back to `localStorage` if opened outside the extension, so the page renders standalone for previewing.
 - **Sync across surfaces**: saving from the popup or a shortcut writes to storage; an open vault tab listens via `chrome.storage.onChanged` and updates live.
-- **Favicons**: uses the tab's own `favIconUrl` when available, else `https://www.google.com/s2/favicons` by domain.
-- **Permissions**: `tabs` (read the active tab's title/url/favicon, open/focus tabs), `storage`, `activeTab`. No host permissions, no network calls except favicon images.
+- **Favicons**: uses the tab's own `favIconUrl` when Chrome provides one; otherwise the vault shows a text fallback.
+- **Permissions**: `tabs` (read the active tab's title/url/favicon, open/focus tabs) and `storage` (save bookmarks/settings locally). No host permissions, no remote scripts, and no extension-initiated network calls.
 
 ## Notes / possible next steps
 

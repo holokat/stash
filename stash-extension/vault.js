@@ -181,7 +181,6 @@
 
   function favicon(b) {
     if (b.favIconUrl) return b.favIconUrl;
-    if (b.domain) return 'https://www.google.com/s2/favicons?sz=64&domain=' + encodeURIComponent(b.domain);
     return '';
   }
 

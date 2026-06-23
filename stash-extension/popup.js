@@ -109,7 +109,7 @@
 
   function render() {
     const domain = tab ? parseDomain(tab.url) : '';
-    const fav = tab && (tab.favIconUrl || (domain ? 'https://www.google.com/s2/favicons?sz=64&domain=' + encodeURIComponent(domain) : ''));
+    const fav = tab && tab.favIconUrl;
 
     if (!tab) { root.innerHTML = '<div style="padding:28px;color:#9a9aa2;font-size:13px;">No active tab.</div>'; return; }
 
