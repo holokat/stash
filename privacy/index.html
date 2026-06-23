@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy - STASH</title>
+    <meta
+      name="description"
+      content="STASH privacy policy: a local-first Chrome extension for saving, tagging, and searching bookmarks in your browser."
+    />
+    <meta property="og:title" content="Privacy Policy - STASH" />
+    <meta property="og:description" content="How STASH handles saved links, tags, notes, and extension data." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://getstash.fyi/privacy" />
+    <meta property="og:site_name" content="STASH" />
+    <meta property="og:image" content="https://getstash.fyi/assets/og/stash-og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Privacy Policy - STASH" />
+    <meta name="twitter:description" content="How STASH handles saved links, tags, notes, and extension data." />
+    <meta name="twitter:image" content="https://getstash.fyi/assets/og/stash-og.png" />
+    <meta name="theme-color" content="#0B0B0D" />
+    <link rel="canonical" href="https://getstash.fyi/privacy" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg?v=stash-logomark-20260623" />
+    <link rel="alternate icon" href="/assets/icons/icon48.png" />
+    <link rel="stylesheet" href="/assets/fonts/fonts.css" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        background: #0b0b0d;
+        color: #f4f2ee;
+        font-family: 'Space Grotesk', system-ui, sans-serif;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background:
+          radial-gradient(760px 360px at 70% -10%, rgba(242, 116, 43, 0.16), transparent 68%),
+          radial-gradient(680px 320px at 16% 10%, rgba(255, 157, 92, 0.08), transparent 62%),
+          #0b0b0d;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .shell {
+        width: min(1060px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 22px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .brand,
+      .links {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .brand {
+        gap: 11px;
+        text-decoration: none;
+      }
+
+      .logo {
+        position: relative;
+        display: inline-grid;
+        width: 34px;
+        height: 34px;
+        flex: 0 0 auto;
+        place-items: center;
+      }
+
+      .logo::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #ff9d5c, #f2742b);
+        box-shadow: 0 0 18px rgba(242, 116, 43, 0.5);
+      }
+
+      .logo::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 10px;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -2px 5px rgba(0, 0, 0, 0.18);
+      }
+
+      .logo svg {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+      }
+
+      .wordmark {
+        font-size: 19px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+      }
+
+      .links {
+        gap: 24px;
+        color: rgba(244, 242, 238, 0.68);
+        font-size: 14px;
+      }
+
+      .link {
+        position: relative;
+        text-decoration: none;
+      }
+
+      .link::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 0;
+        height: 1.5px;
+        background: linear-gradient(90deg, #ff9d5c, #f2742b);
+        transition: width 240ms ease;
+      }
+
+      .link:hover::after {
+        width: 100%;
+      }
+
+      main {
+        padding: 86px 0 96px;
+      }
+
+      .eyebrow {
+        margin: 0 0 14px;
+        color: #ff9d5c;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 760px;
+        margin: 0;
+        color: #f4f2ee;
+        font-size: clamp(44px, 8vw, 86px);
+        font-weight: 700;
+        line-height: 0.96;
+        letter-spacing: -0.02em;
+      }
+
+      .intro {
+        max-width: 760px;
+        margin: 26px 0 0;
+        color: rgba(244, 242, 238, 0.68);
+        font-size: 19px;
+        line-height: 1.6;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 26px 0 0;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 32px;
+        padding: 7px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.045);
+        color: rgba(244, 242, 238, 0.72);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+      }
+
+      .policy {
+        display: grid;
+        grid-template-columns: 0.72fr 1fr;
+        gap: 56px;
+        margin-top: 72px;
+      }
+
+      .summary {
+        position: sticky;
+        top: 24px;
+        align-self: start;
+        overflow: hidden;
+        padding: 26px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        background: linear-gradient(160deg, rgba(22, 17, 13, 0.92), rgba(18, 18, 21, 0.92));
+        box-shadow: 0 28px 70px -44px rgba(242, 116, 43, 0.6);
+      }
+
+      .summary h2,
+      .section h2 {
+        margin: 0 0 14px;
+        color: #f4f2ee;
+        font-size: 24px;
+        line-height: 1.14;
+      }
+
+      .summary p {
+        margin: 0;
+        color: rgba(244, 242, 238, 0.68);
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      .summary ul,
+      .section ul {
+        margin: 18px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .summary li,
+      .section li {
+        position: relative;
+        margin-top: 12px;
+        padding-left: 20px;
+        color: rgba(244, 242, 238, 0.7);
+        line-height: 1.6;
+      }
+
+      .summary li::before,
+      .section li::before {
+        content: '';
+        position: absolute;
+        top: 0.72em;
+        left: 0;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #f2742b;
+        box-shadow: 0 0 12px rgba(242, 116, 43, 0.5);
+      }
+
+      .sections {
+        min-width: 0;
+      }
+
+      .section {
+        padding: 30px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .section:first-child {
+        border-top: 0;
+        padding-top: 0;
+      }
+
+      .section p {
+        margin: 0;
+        color: rgba(244, 242, 238, 0.68);
+        font-size: 16px;
+        line-height: 1.75;
+      }
+
+      .section p + p {
+        margin-top: 14px;
+      }
+
+      .section strong {
+        color: #f4f2ee;
+        font-weight: 600;
+      }
+
+      .inline-code {
+        padding: 2px 6px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 7px;
+        background: rgba(255, 255, 255, 0.055);
+        color: #ffc79a;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.88em;
+      }
+
+      footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 28px 0 34px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        color: rgba(244, 242, 238, 0.58);
+        font-size: 14px;
+      }
+
+      footer p {
+        margin: 0;
+      }
+
+      @media (max-width: 820px) {
+        .shell {
+          width: min(100% - 28px, 1060px);
+        }
+
+        .nav,
+        footer {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        main {
+          padding: 58px 0 72px;
+        }
+
+        .policy {
+          grid-template-columns: 1fr;
+          gap: 34px;
+          margin-top: 52px;
+        }
+
+        .summary {
+          position: relative;
+          top: auto;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .links {
+          width: 100%;
+          justify-content: space-between;
+          gap: 14px;
+        }
+
+        h1 {
+          font-size: 46px;
+        }
+
+        .intro {
+          font-size: 17px;
+        }
+
+        .summary,
+        .section {
+          padding-left: 0;
+          padding-right: 0;
+        }
+
+        .summary {
+          border-left: 0;
+          border-right: 0;
+          border-radius: 0;
+          background: transparent;
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <nav class="nav" aria-label="Privacy navigation">
+        <a class="brand" href="/" aria-label="STASH home">
+          <span class="logo">
+            <svg viewBox="0 0 34 34" fill="none" aria-hidden="true">
+              <circle cx="17" cy="17" r="11" stroke="#1a0f0a" stroke-width="1.4" opacity=".4"></circle>
+              <circle cx="17" cy="17" r="9" stroke="#1a0f0a" stroke-width="1.7"></circle>
+              <g stroke="#1a0f0a" stroke-width="1.8" stroke-linecap="round">
+                <path d="M19 19 22.7 22.7"></path>
+                <path d="M15 19 11.3 22.7"></path>
+                <path d="M15 15 11.3 11.3"></path>
+                <path d="M19 15 22.7 11.3"></path>
+              </g>
+              <circle cx="17" cy="17" r="2.6" fill="#1a0f0a"></circle>
+            </svg>
+          </span>
+          <span class="wordmark">STASH</span>
+        </a>
+
+        <div class="links">
+          <a class="link" href="/">Home</a>
+          <a class="link" href="/#features">Features</a>
+          <a class="link" href="https://github.com/karnagebitcoin/stash" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </nav>
+
+      <main>
+        <p class="eyebrow">Privacy Policy</p>
+        <h1>Local-first by design.</h1>
+        <p class="intro">
+          STASH is a Chrome extension for saving tabs into a searchable bookmark stash. This policy explains what the
+          extension stores, what it does not collect, and how you can remove your data.
+        </p>
+        <div class="meta" aria-label="Policy metadata">
+          <span class="pill">Effective June 23, 2026</span>
+          <span class="pill">No account</span>
+          <span class="pill">No cloud vault</span>
+          <span class="pill">No sale of data</span>
+        </div>
+
+        <div class="policy">
+          <aside class="summary" aria-label="Privacy summary">
+            <h2>Short version</h2>
+            <p>
+              STASH saves the bookmark data you choose to keep inside your browser. We do not run a STASH account
+              service, sync server, advertising network, or analytics pipeline for your extension data.
+            </p>
+            <ul>
+              <li>Your saved links stay in local Chrome extension storage.</li>
+              <li>The extension uses only the permissions needed to save and reopen tabs.</li>
+              <li>We do not sell, rent, or share your saved bookmark data.</li>
+            </ul>
+          </aside>
+
+          <div class="sections">
+            <section class="section">
+              <h2>Data the extension stores locally</h2>
+              <p>
+                When you choose to save a tab, STASH stores bookmark information in
+                <span class="inline-code">chrome.storage.local</span> in your browser profile. This can include:
+              </p>
+              <ul>
+                <li>The saved page URL, title, domain, and favicon URL if Chrome provides one.</li>
+                <li>Tags, notes, saved dates, and other bookmark details you add.</li>
+                <li>Local preferences such as theme, view mode, sort order, and filter state.</li>
+              </ul>
+              <p>
+                This data is used to display your stash, search it, filter it, export it when you ask, and open saved
+                links when you choose them.
+              </p>
+            </section>
+
+            <section class="section">
+              <h2>Data we do not collect</h2>
+              <p>
+                STASH does not collect saved bookmark data on our servers. The extension does not create a STASH account,
+                does not send your stash to a cloud database, and does not sell or rent your data.
+              </p>
+              <p>
+                STASH does not collect personally identifiable information, health information, financial or payment
+                information, authentication information, personal communications, precise location, or user activity
+                tracking data.
+              </p>
+              <p>
+                STASH does not monitor your browsing history. It records only the pages you explicitly save or import
+                into the extension.
+              </p>
+            </section>
+
+            <section class="section">
+              <h2>Chrome permissions</h2>
+              <p>STASH requests a small set of Chrome extension permissions so the core features can work:</p>
+              <ul>
+                <li>
+                  <strong>Tabs:</strong> used to read the active tab's URL, title, and favicon when you save a tab, and
+                  to open or focus the STASH vault tab when requested.
+                </li>
+                <li>
+                  <strong>Storage:</strong> used to store saved bookmarks, tags, notes, and preferences locally in your
+                  browser.
+                </li>
+              </ul>
+            </section>
+
+            <section class="section">
+              <h2>Remote code and network use</h2>
+              <p>
+                The Chrome extension does not execute remotely hosted code. Its JavaScript, CSS, fonts, and icons are
+                packaged with the extension.
+              </p>
+              <p>
+                The public website at <strong>getstash.fyi</strong> is a static marketing and policy site hosted by
+                Netlify. Like most hosting providers, Netlify may process standard request metadata, such as IP address,
+                browser user agent, and request time, to deliver the site, prevent abuse, and maintain service security.
+                That website hosting metadata is separate from your local STASH extension data.
+              </p>
+            </section>
+
+            <section class="section">
+              <h2>Import, export, and sharing</h2>
+              <p>
+                If you use STASH import or export features, the file is created or selected by you. Exported files remain
+                under your control unless you choose to share them, upload them, or store them somewhere else.
+              </p>
+            </section>
+
+            <section class="section">
+              <h2>Deleting your data</h2>
+              <p>
+                You can delete individual saved items inside STASH. You can also remove the extension from Chrome or
+                clear the extension's local browser storage to remove locally stored STASH data from that browser
+                profile.
+              </p>
+            </section>
+
+            <section class="section">
+              <h2>Third parties</h2>
+              <p>
+                We do not share your saved bookmark data with third parties. Chrome, the Chrome Web Store, GitHub,
+                Netlify, and any sites you choose to open have their own privacy practices outside of STASH.
+              </p>
+            </section>
+
+            <section class="section">
+              <h2>Changes and contact</h2>
+              <p>
+                We may update this policy when STASH changes. If the way STASH handles extension data changes
+                materially, we will update this page and the Chrome Web Store disclosure.
+              </p>
+              <p>
+                For privacy questions, contact the publisher through the Chrome Web Store listing or the GitHub
+                repository linked from this site.
+              </p>
+            </section>
+          </div>
+        </div>
+      </main>
+
+      <footer>
+        <p>STASH privacy policy</p>
+        <div class="links">
+          <a class="link" href="/">Home</a>
+          <a class="link" href="/#install">Install</a>
+          <a class="link" href="https://github.com/karnagebitcoin/stash" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
