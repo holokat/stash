@@ -1,7 +1,8 @@
-// STASH — background service worker (Manifest V3)
+// STASH — Firefox background event page (Manifest V3)
 // Handles keyboard shortcuts, the quick-save flow, opening the vault, and first-run seeding.
 
-const VAULT_URL = chrome.runtime.getURL('vault.html');
+const ext = typeof browser !== 'undefined' ? browser : chrome;
+const VAULT_URL = ext.runtime.getURL('vault.html');
 
 function parseDomain(u) {
   let s = String(u || '').trim();
@@ -45,12 +46,12 @@ function guessTag(domain) {
 }
 
 async function getBookmarks() {
-  const { bookmarks } = await chrome.storage.local.get('bookmarks');
+  const { bookmarks } = await ext.storage.local.get('bookmarks');
   return Array.isArray(bookmarks) ? bookmarks : [];
 }
 
 async function saveBookmark({ url, title, favIconUrl, tag }) {
-  if (!url || /^chrome:\/\//i.test(url) || /^chrome-extension:\/\//i.test(url) || /^about:/i.test(url) || /^edge:\/\//i.test(url)) {
+  if (!url || /^(chrome|edge|about|chrome-extension|moz-extension):/i.test(url)) {
     flashBadge('—');
     return null;
   }
@@ -64,7 +65,7 @@ async function saveBookmark({ url, title, favIconUrl, tag }) {
     b.tags = bookmarkTags(b);
     b.tag = b.tags[0] || '';
     bookmarks.unshift(b);
-    await chrome.storage.local.set({ bookmarks });
+    await ext.storage.local.set({ bookmarks });
     flashBadge('✓');
     return b;
   }
@@ -83,7 +84,7 @@ async function saveBookmark({ url, title, favIconUrl, tag }) {
     savedAt: Date.now()
   };
   bookmarks.unshift(nb);
-  await chrome.storage.local.set({ bookmarks });
+  await ext.storage.local.set({ bookmarks });
   flashBadge('✓');
   return nb;
 }
@@ -91,44 +92,43 @@ async function saveBookmark({ url, title, favIconUrl, tag }) {
 let badgeTimer = null;
 function flashBadge(text) {
   try {
-    chrome.action.setBadgeBackgroundColor({ color: '#F2742B' });
-    chrome.action.setBadgeText({ text });
+    ext.action.setBadgeBackgroundColor({ color: '#F2742B' });
+    ext.action.setBadgeText({ text });
     clearTimeout(badgeTimer);
-    badgeTimer = setTimeout(() => chrome.action.setBadgeText({ text: '' }), 1400);
+    badgeTimer = setTimeout(() => ext.action.setBadgeText({ text: '' }), 1400);
   } catch (e) {}
 }
 
 async function saveActiveTab() {
-  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const [tab] = await ext.tabs.query({ active: true, currentWindow: true });
   if (!tab) return;
   await saveBookmark({ url: tab.url, title: tab.title, favIconUrl: tab.favIconUrl });
 }
 
 async function openVault() {
-  const tabs = await chrome.tabs.query({});
+  const tabs = await ext.tabs.query({});
   const existing = tabs.find(t => t.url && t.url.startsWith(VAULT_URL));
   if (existing) {
-    chrome.tabs.update(existing.id, { active: true });
-    if (existing.windowId != null) chrome.windows.update(existing.windowId, { focused: true });
+    ext.tabs.update(existing.id, { active: true });
+    if (existing.windowId != null) ext.windows.update(existing.windowId, { focused: true });
   } else {
-    chrome.tabs.create({ url: VAULT_URL });
+    ext.tabs.create({ url: VAULT_URL });
   }
 }
 
 // keyboard shortcuts
-chrome.commands.onCommand.addListener((command) => {
+ext.commands.onCommand.addListener((command) => {
   if (command === 'save-tab') saveActiveTab();
   else if (command === 'open-vault') openVault();
 });
 
 // messages from popup
-chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+ext.runtime.onMessage.addListener((msg) => {
   if (msg && msg.type === 'save-bookmark') {
-    saveBookmark(msg.payload).then(b => sendResponse({ ok: true, bookmark: b }));
-    return true; // async
+    return saveBookmark(msg.payload).then(b => ({ ok: true, bookmark: b }));
   }
-  if (msg && msg.type === 'open-vault') { openVault(); sendResponse({ ok: true }); return false; }
-  if (msg && msg.type === 'save-active-tab') { saveActiveTab().then(() => sendResponse({ ok: true })); return true; }
+  if (msg && msg.type === 'open-vault') return openVault().then(() => ({ ok: true }));
+  if (msg && msg.type === 'save-active-tab') return saveActiveTab().then(() => ({ ok: true }));
 });
 
 // New installs start with an empty stash — no seeded bookmarks.

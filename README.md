@@ -1,49 +1,43 @@
-# Stash Chrome Extension (Local-First)
+# STASH
 
-Stash is a local-only bookmark extension inspired by MyMind patterns.
+STASH is a local-first tab vault for Chrome and Firefox. It saves the current tab, lets you add tags and notes, and keeps everything searchable in a private browser-local vault.
 
-## Features
+No account. No cloud sync. No tracker.
 
-- One-click save from the extension popup.
-- Lightweight popup editor for tags and notes.
-- Automatic Open Graph/Twitter preview image capture when available.
-- Favicon capture from page metadata (with `/favicon.ico` fallback).
-- IndexedDB persistence (no login, no cloud dependency).
-- Theme mode: `Auto` (time-based), `Light`, `Dark`.
-- Appearance settings: UI font options and dark palette selection.
-- Extension action context menu item: `Open Stash`.
-- Settings modal with configurable masonry columns.
-- Search bookmarks by title, URL, tag, description, and note.
-- Layout modes: masonry (default), grid, list.
-- Sort modes: most recent (default), oldest, title A-Z, title Z-A, domain.
-- Tag navigation and quick tag filtering.
-- Bookmark actions: copy URL, edit, delete.
-- Bulk mode: select visible, clear, bulk add tag, bulk copy URLs, bulk export, bulk delete.
-- Export all or selected bookmarks to JSON; import supported.
-- Keyboard shortcuts:
-  - `⌘K` / `Ctrl+K` focuses search in library.
-  - `Ctrl+Shift+K` (`Cmd+Shift+K` on Mac) opens the Stash library.
-  - `Ctrl+Shift+S` (`Cmd+Shift+S` on Mac) quick-saves active tab.
+## Downloads
 
-## Project Structure
+- [Stash for Chrome](https://github.com/karnagebitcoin/stash/releases/download/v1.0.2/stash-extension-1.0.2-chrome-store.zip)
+- [Stash for Firefox](https://github.com/karnagebitcoin/stash/releases/download/v1.0.2/stash-extension-firefox-1.0.2.zip)
 
-- `manifest.json`
-- `src/background/service-worker.js`
-- `src/shared/storage.js`
-- `src/shared/page-metadata.js`
-- `src/shared/theme.js`
-- `src/shared/icons.js`
-- `src/popup/*`
-- `src/manager/*`
+## What Is In This Repo
 
-## Load in Chrome
+- `index.html`, `landing.css`, `landing.js`: the public site.
+- `privacy/`: privacy policy page.
+- `stash-extension/`: Chrome extension source.
+- `stash-extension-firefox/`: Firefox extension source.
+
+## Shortcuts
+
+- Chrome quick-save: `Cmd+Shift+S` on macOS, `Ctrl+Shift+S` elsewhere.
+- Firefox quick-save: `Option+Shift+S` on macOS, `Alt+Shift+S` elsewhere.
+- Open vault: `Cmd+Shift+K` on macOS, `Ctrl+Shift+K` elsewhere.
+- Search vault: `Cmd+K` on macOS, `Ctrl+K` elsewhere.
+
+## Load Locally
+
+Chrome:
 
 1. Open `chrome://extensions`.
 2. Enable Developer mode.
 3. Click **Load unpacked**.
-4. Select this folder: `stash`.
+4. Select `stash-extension/`.
 
-## Notes
+Firefox:
 
-- Data is stored in the extension's IndexedDB storage area only.
-- Exported JSON includes tags, notes, and metadata.
+1. Open `about:debugging#/runtime/this-firefox`.
+2. Click **Load Temporary Add-on...**.
+3. Select `stash-extension-firefox/manifest.json`.
+
+## Privacy
+
+Bookmarks and settings are stored in the browser profile. STASH does not use host permissions, remote scripts, accounts, analytics, or extension-initiated network calls.

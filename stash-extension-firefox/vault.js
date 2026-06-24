@@ -1,6 +1,6 @@
 /* STASH — Vault page logic (vanilla JS port of the prototype).
    build: full-width + responsive columns + Cmd/Ctrl-K search.
-   Persists to chrome.storage.local when running as an extension,
+   Persists to browser.storage.local when running as an extension,
    and falls back to localStorage so the page also renders standalone. */
 
 (function () {
@@ -30,18 +30,22 @@
   const sortMap = { recent: 'Most recent', oldest: 'Oldest first', az: 'Title A–Z', domain: 'Domain', tag: 'By tag' };
 
   // ---------- storage abstraction ----------
-  const hasChrome = typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local;
+  const ext = typeof browser !== 'undefined' ? browser : (typeof chrome !== 'undefined' ? chrome : null);
+  const hasExtension = !!(ext && ext.storage && ext.storage.local);
+  const usesPromises = typeof browser !== 'undefined' && ext === browser;
   const store = {
     get(keys) {
       return new Promise(res => {
-        if (hasChrome) { chrome.storage.local.get(keys, res); return; }
+        if (hasExtension && usesPromises) { ext.storage.local.get(keys).then(res); return; }
+        if (hasExtension) { ext.storage.local.get(keys, res); return; }
         const all = JSON.parse(localStorage.getItem('stash-ext') || '{}');
         const out = {}; (keys || Object.keys(all)).forEach(k => out[k] = all[k]); res(out);
       });
     },
     set(obj) {
       return new Promise(res => {
-        if (hasChrome) { chrome.storage.local.set(obj, res); return; }
+        if (hasExtension && usesPromises) { ext.storage.local.set(obj).then(res); return; }
+        if (hasExtension) { ext.storage.local.set(obj, res); return; }
         const all = JSON.parse(localStorage.getItem('stash-ext') || '{}');
         Object.assign(all, obj); localStorage.setItem('stash-ext', JSON.stringify(all)); res();
       });
@@ -91,7 +95,7 @@
   function age(d) { if (d < 1) return 'now'; if (d < 7) return d + 'd'; if (d < 30) return Math.round(d / 7) + 'w'; return Math.round(d / 30) + 'mo'; }
   const IS_MAC = /Mac|iPhone|iPod|iPad/i.test(navigator.platform || navigator.userAgent || '');
   const SEARCH_SHORTCUT = IS_MAC ? '⌘K' : 'Ctrl K';
-  const SAVE_SHORTCUT = IS_MAC ? '⌘⇧S' : 'Ctrl+Shift+S';
+  const SAVE_SHORTCUT = IS_MAC ? '⌥⇧S' : 'Alt+Shift+S';
   const VAULT_SHORTCUT = IS_MAC ? '⌘⇧K' : 'Ctrl+Shift+K';
   function colsFor(view) {
     const w = window.innerWidth || 1280;
@@ -125,14 +129,14 @@
 
   async function init() {
     let { bookmarks, settings } = await store.get(['bookmarks', 'settings']);
-    // standalone preview only (never runs inside the extension — chrome.storage is present there)
-    if (!hasChrome && !Array.isArray(bookmarks)) { bookmarks = demoSeed(); store.set({ bookmarks }); }
+    // standalone preview only (never runs inside the extension — extension storage is present there)
+    if (!hasExtension && !Array.isArray(bookmarks)) { bookmarks = demoSeed(); store.set({ bookmarks }); }
     state.bookmarks = Array.isArray(bookmarks) ? bookmarks.map(normalizeBookmark) : [];
     if (settings) { if (settings.view) state.view = settings.view; if (settings.sort) state.sort = settings.sort; if (settings.theme) state.theme = settings.theme; }
     setupDelegation();
     render();
-    if (hasChrome && chrome.storage.onChanged) {
-      chrome.storage.onChanged.addListener((ch, area) => {
+    if (hasExtension && ext.storage.onChanged) {
+      ext.storage.onChanged.addListener((ch, area) => {
         if (area === 'local' && ch.bookmarks) { state.bookmarks = (ch.bookmarks.newValue || []).map(normalizeBookmark); render(); }
       });
     }

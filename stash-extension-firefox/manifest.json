@@ -8,12 +8,12 @@
     "default_title": "Stash this tab"
   },
   "background": {
-    "service_worker": "background.js"
+    "scripts": ["background.js"]
   },
   "permissions": ["tabs", "storage"],
   "commands": {
     "save-tab": {
-      "suggested_key": { "default": "Ctrl+Shift+S", "mac": "Command+Shift+S" },
+      "suggested_key": { "default": "Alt+Shift+S", "mac": "Alt+Shift+S" },
       "description": "Quick-save the current tab to the vault"
     },
     "open-vault": {
@@ -25,5 +25,14 @@
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "stash-tab-vault@stash.local",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
   }
 }

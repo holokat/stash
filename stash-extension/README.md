@@ -13,10 +13,10 @@ via `chrome.storage.local`.
 
 ## Use it
 
-- **Click the toolbar icon** → the tab is stashed instantly, then a popup lets you add **multiple tags** and a **note** before hitting *Done* (or *Copy URL* / *Open Vault*).
+- **Click the toolbar icon** → the tab is stashed instantly, then a popup lets you add **multiple tags** and a **note** before hitting *Done* (or *Copy URL* / *Open Vault*). The popup also shows the save/open-vault shortcuts.
 - **⌘⇧S / Ctrl+Shift+S** → stash the current tab with no popup (a ✓ badge flashes).
 - **⌘⇧K / Ctrl+Shift+K** → open the full vault.
-- In the vault: search, filter by tag, sort, switch **Columns / Grid / List** views, toggle **System / Light / Dark**, add links manually with the **+** button, hover a card to **open** or **delete** (with undo).
+- In the vault: search, filter by tag, sort, switch **Columns / Grid / List** views, toggle **System / Light / Dark**, add links manually with the **+** button, hover a card to **open** or **delete** (with undo). The vault header shows quick shortcut hints.
   - **Full-width, responsive** layout — the grid scales up to **6 columns** on wide screens and collapses to a single column on mobile.
   - **⌘K / Ctrl-K** (or **/**) jumps to search; the shortcut is shown as a hint inside the search field.
 

@@ -1,5 +1,5 @@
 /* STASH — quick-save popup (dark). Stashes the tab on open, then lets you
-   enrich it with tags + a note. Writes straight to chrome.storage.local
+   enrich it with tags + a note. Writes straight to browser.storage.local
    (with a localStorage fallback so the popup also renders standalone). */
 (function () {
   'use strict';
@@ -7,9 +7,11 @@
   const ACCENT = '#F2742B', ACCENT2 = '#FF9D5C', ON = '#1a0f0a';
   const PRESET_TAGS = ['design', 'dev', 'ai', 'reading', 'docs', 'tools', 'finance', 'social', 'hosting', '3d'];
   const root = document.getElementById('root');
-  const hasChrome = typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local;
+  const ext = typeof browser !== 'undefined' ? browser : (typeof chrome !== 'undefined' ? chrome : null);
+  const hasExtension = !!(ext && ext.storage && ext.storage.local);
+  const usesPromises = typeof browser !== 'undefined' && ext === browser;
   const IS_MAC = /Mac|iPhone|iPod|iPad/i.test(navigator.platform || navigator.userAgent || '');
-  const SAVE_SHORTCUT = IS_MAC ? '⌘⇧S' : 'Ctrl+Shift+S';
+  const SAVE_SHORTCUT = IS_MAC ? '⌥⇧S' : 'Alt+Shift+S';
   const VAULT_SHORTCUT = IS_MAC ? '⌘⇧K' : 'Ctrl+Shift+K';
 
   let tab = null;
@@ -23,14 +25,16 @@
   // ---------- storage ----------
   function getLocal(key) {
     return new Promise(res => {
-      if (hasChrome) { chrome.storage.local.get(key, r => res(r || {})); return; }
+      if (hasExtension && usesPromises) { ext.storage.local.get(key).then(r => res(r || {})); return; }
+      if (hasExtension) { ext.storage.local.get(key, r => res(r || {})); return; }
       const all = JSON.parse(localStorage.getItem('stash-ext') || '{}');
       const o = {}; o[key] = all[key]; res(o);
     });
   }
   function setLocal(obj) {
     return new Promise(res => {
-      if (hasChrome) { chrome.storage.local.set(obj, res); return; }
+      if (hasExtension && usesPromises) { ext.storage.local.set(obj).then(res); return; }
+      if (hasExtension) { ext.storage.local.set(obj, res); return; }
       const all = JSON.parse(localStorage.getItem('stash-ext') || '{}');
       Object.assign(all, obj); localStorage.setItem('stash-ext', JSON.stringify(all)); res();
     });
@@ -209,7 +213,7 @@
     const k = t.getAttribute('data-k');
     if (act === 'tag') { selected.add(k); persist(); rerender(); }
     else if (act === 'untag') { selected.delete(k); persist(); rerender(); }
-    else if (act === 'vault') { if (hasChrome) chrome.runtime.sendMessage({ type: 'open-vault' }); window.close(); }
+    else if (act === 'vault') { if (hasExtension) ext.runtime.sendMessage({ type: 'open-vault' }); window.close(); }
     else if (act === 'done') { persist().then(() => window.close()); }
     else if (act === 'copy') {
       const text = tab ? tab.url : '';
@@ -230,7 +234,7 @@
 
   // ---------- boot ----------
   async function boot() {
-    blocked = !tab || !tab.url || /^(chrome|edge|about|chrome-extension|view-source):/i.test(tab.url);
+    blocked = !tab || !tab.url || /^(chrome|edge|about|chrome-extension|moz-extension|view-source):/i.test(tab.url);
     if (!blocked) { try { await stashCurrent(); } catch (e) { blocked = true; } }
     else {
       const { bookmarks } = await getLocal('bookmarks');
@@ -243,8 +247,9 @@
     if (ti) ti.focus();
   }
 
-  if (hasChrome && chrome.tabs) {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => { tab = tabs && tabs[0]; boot(); });
+  if (hasExtension && ext.tabs) {
+    if (usesPromises) ext.tabs.query({ active: true, currentWindow: true }).then((tabs) => { tab = tabs && tabs[0]; boot(); });
+    else ext.tabs.query({ active: true, currentWindow: true }, (tabs) => { tab = tabs && tabs[0]; boot(); });
   } else {
     tab = { url: 'https://claude.ai/chat', title: 'Claude', favIconUrl: '' };
     boot();
