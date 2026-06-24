@@ -6,8 +6,8 @@ No account. No cloud sync. No tracker.
 
 ## Downloads
 
-- [Stash for Chrome](https://github.com/karnagebitcoin/stash/releases/download/v1.0.2/stash-extension-1.0.2-chrome-store.zip)
-- [Stash for Firefox](https://github.com/karnagebitcoin/stash/releases/download/v1.0.2/stash-extension-firefox-1.0.2.zip)
+- [Stash for Chrome](https://github.com/holokat/stash/releases/download/v1.0.2/stash-extension-1.0.2-chrome-store.zip)
+- [Stash for Firefox](https://github.com/holokat/stash/releases/download/v1.0.2/stash-extension-firefox-1.0.2.zip)
 
 ## What Is In This Repo
 
